@@ -32,8 +32,8 @@ app.get("/", (req: Request, res: Response, nect: NextFunction) => {
   res.send("hello world!");
 });
 
-app.get("/ses", async (req: Request, res: Response) => {
-  const result = await ses();
+app.get("/email", async (req: Request, res: Response) => {
+  const result = await sendEmail();
   console.log(result);
   res.send(result);
 });
@@ -46,7 +46,7 @@ app.listen(1234, () => {
     `);
 });
 
-const ses = async () => {
+const sendEmail = async () => {
   const sesClient = createSesClient()
   const sendEmailCommand = createSendEmailCommand()
   return await sesClient.send(sendEmailCommand);
